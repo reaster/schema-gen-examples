@@ -1,0 +1,1 @@
+include ':schema-gen'//, ':example-gpx-java', ':example-hsf-java', ':example-hsf-swift', ':example-x-java'

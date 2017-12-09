@@ -1,0 +1,29 @@
+//group 'com.javagen'
+//version '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+//    apply plugin: 'groovy'
+}
+
+//apply plugin: 'groovy'
+//apply plugin: 'java'
+
+//sourceCompatibility = 1.8
+
+//project(':example-gpx-java') {
+//    dependencies {
+//        compile project(':schema-gen')
+//    }
+//}
+
+//project(':example-gpx-java') {
+//    dependencies {
+//        compile project(':schema-gen')
+//    }
+//}
+//project(':example-hsf-java') {
+//    dependencies {
+//        compile project(':schema-gen')
+//    }
+//}

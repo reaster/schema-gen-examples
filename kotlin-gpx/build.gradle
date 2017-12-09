@@ -1,0 +1,89 @@
+group 'com.javagen'
+version '1.0.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.2.0'
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.javagen:schema-gen:1.0.0-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+
+class JavaGenPlugin implements Plugin<Project>
+{
+    void apply(Project project)
+    {
+        project.extensions.create("gen", com.javagen.gen.kotlin.KotlinGen)
+        project.task('gen', type: JavaGenTask)
+    }
+}
+
+class JavaGenTask extends org.gradle.api.DefaultTask
+{
+    @Override String getGroup() { return 'code generation' }
+
+    @org.gradle.api.tasks.TaskAction
+    def gen() {
+        project.gen.srcDir = new File(project.projectDir, project.gen.srcDir.toString())
+        println '--------------java-gen-------------------'
+        println "input - schema: ${project.gen.schemaFile}"
+        println "ouput -   java: ${project.gen.srcDir}"
+        project.gen.gen()
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: JavaGenPlugin
+
+gen {
+    schemaFile = new File('src/main/resources/gpx.xsd').toURI().toURL()
+    srcDir = new File('src/main/kotlin-gen') //TODO remove me
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/kotlin-gen'
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+//sourceCompatibility = 1.8
+//targetCompatibility = 1.8
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = '1.8'
+        javaParameters = true
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = '1.8'
+        javaParameters = true
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.2'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.2'
+    compile 'com.fasterxml.jackson.module:jackson-modules-java8:2.9.2'
+    compile 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0'
+    //compile 'org.hibernate.validator:hibernate-validator:6.0.2.Final'
+    //compile 'org.glassfish:javax.el:3.0.1-b08'
+    testCompile 'junit:junit:4.11'
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+}
