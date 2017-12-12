@@ -58,9 +58,6 @@ repositories {
     mavenCentral()
 }
 
-//sourceCompatibility = 1.8
-//targetCompatibility = 1.8
-
 compileKotlin {
     kotlinOptions {
         jvmTarget = '1.8'
@@ -82,8 +79,8 @@ dependencies {
     compile 'com.fasterxml.jackson.module:jackson-modules-java8:2.9.2'
     compile 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.2'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0'
-    //compile 'org.hibernate.validator:hibernate-validator:6.0.2.Final'
-    //compile 'org.glassfish:javax.el:3.0.1-b08'
+    compile 'org.hibernate.validator:hibernate-validator:6.0.2.Final'
+    compile 'org.glassfish:javax.el:3.0.1-b08'
     testCompile 'junit:junit:4.11'
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }

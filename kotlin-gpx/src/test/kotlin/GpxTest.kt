@@ -18,6 +18,13 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 import java.time.LocalDateTime
+import javax.validation.ConstraintViolation
+import javax.validation.Validation
+import javax.validation.constraints.Size
+import javax.validation.constraints.Max
+import javax.validation.Validator
+import javax.validation.ValidatorFactory
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 
@@ -46,6 +53,7 @@ const val XML = """
                 </wpt>
                 <wpt lat="40.789547754060159" lon="-119.211019828752043">
                     <name>Akle' the Dragon</name>
+                    <dgpsid>9999</dgpsid>
                 </wpt>
                 <trk>
                   <name>Runway 7L/25R</name>
@@ -67,7 +75,7 @@ const val XML = """
                 </trk>
             </gpx>"""
 
-class GpxJacksonTest()
+class GpxTest()
 {
 
     @test fun testBlackRockCityXmlFileParsing()
@@ -173,4 +181,72 @@ class GpxJacksonTest()
         val bounds2:Bounds = mapper.readValue(json0)
         assertEquals(bounds0, bounds2)
     }
+
+    @test fun testBasicValidationInKotlin()
+    {
+        data class User (
+            @get:Size(min=5, max=15) // added annotation use-site target here
+            val name: String,
+            @get:Max(130)
+            val age:Int
+        )
+        //given a validator
+        val factory = Validation.buildDefaultValidatorFactory()
+        val validator = factory.getValidator()
+        val moo = User("moo", 150)
+        val violations = validator.validate(moo)
+        assertFalse(violations.isEmpty())
+        val v1 = violations.find { it.propertyPath.toString() == "name" }
+        if (v1 != null) {
+            println(v1.message)
+            assertTrue(v1.leafBean is User)
+            assertEquals("name", v1.propertyPath.toString())
+            assertEquals("moo", v1.invalidValue)
+            assertTrue(v1.message.contains("5 and 15"))
+        }
+        val v2 = violations.find { it.propertyPath.toString() == "age" }
+        if (v2 != null) {
+            println(v2.message)
+            assertTrue(v2.leafBean is User)
+            assertEquals(150, v2.invalidValue)
+            assertTrue(v2.message.contains("130"))
+        }
+    }
+
+    @test fun beanValidation()
+    {
+        //given a validator
+        val factory = Validation.buildDefaultValidatorFactory()
+        val validator = factory.getValidator()
+
+        val xmlMapper = XmlMapper()
+        xmlMapper.registerModule(ParameterNamesModule())
+        xmlMapper.registerModule(JavaTimeModule())
+        xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+        xmlMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        xmlMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        //marshall xml code into schema-gen generated POJOs
+        val gpx = xmlMapper.readValue<Gpx>(XML)
+        //and run validator on gpx tree
+        val violations = validator.validate(gpx)
+
+        //then should find nested min size violation in gpx.metadata.bounds.minlat
+        assertFalse(violations.isEmpty())
+        val v1 = violations.find { it.propertyPath.toString().endsWith("dgpsid") }
+        if (v1 != null) {
+            println(v1.message)
+            assertTrue(v1.leafBean is Wpt)
+            assertEquals(9999, v1.invalidValue)
+            assertTrue(v1.message.contains("1023"))
+        }
+        val v2 = violations.find { it.propertyPath.toString().endsWith("minlat") }
+        if (v2 != null) {
+            println(v2.message)
+            assertTrue(v2.leafBean is Bounds)
+            assertEquals(v2.getInvalidValue(), gpx.metadata?.bounds?.minlat)
+            assertTrue(v2.message.contains("90.0"))
+        }
+    }
+
 }

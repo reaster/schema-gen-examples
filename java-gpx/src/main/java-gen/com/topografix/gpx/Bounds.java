@@ -3,12 +3,14 @@ package com.topografix.gpx;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Size;
 
 public class Bounds
 {
     @JacksonXmlProperty(isAttribute = true)
-    @DecimalMin("-90.0")
-    @DecimalMax("90.0")
+    //@DecimalMin("-90.0")
+    //@DecimalMax("90.0")
+    @Size(min=-90, max=90)
     private double minlat;
     @JacksonXmlProperty(isAttribute = true)
     @DecimalMin("-180.0")

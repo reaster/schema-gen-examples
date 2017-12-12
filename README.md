@@ -1,2 +1,2 @@
 # schema-gen-examples
-schema-gen examples and tests.
+[schema-gen](https://github.com/reaster/schema-gen) examples and tests.
