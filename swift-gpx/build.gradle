@@ -16,7 +16,7 @@ class JavaGenPlugin implements Plugin<Project>
 {
     void apply(Project project)
     {
-        project.extensions.create("gen", com.javagen.gen.java.JavaGen)
+        project.extensions.create("gen", com.javagen.schema.java.JavaGen)
         project.task('gen', type: JavaGenTask)
     }
 }
@@ -41,14 +41,14 @@ apply plugin: 'maven'
 apply plugin: JavaGenPlugin
 
 gen {
-    schemaFile = new File('src/main/resources/gdx.xsd').toURI().toURL()
-    packageName = 'org.w3.atom'
+    schemaFile = new File('src/resources/gpx.xsd').toURI().toURL()
+    //packageName = 'org.w3.atom'
 }
 
 sourceSets {
     main {
         java {
-            srcDir 'src/main/java-gen/'
+            srcDir 'src/swift-gen/'
         }
     }
 }

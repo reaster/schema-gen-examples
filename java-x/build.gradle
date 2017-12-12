@@ -16,7 +16,7 @@ class JavaGenPlugin implements Plugin<Project>
 {
     void apply(Project project)
     {
-        project.extensions.create("gen", com.javagen.gen.java.JavaGen)
+        project.extensions.create("gen", com.javagen.schema.java.JavaGen)
         project.task('gen', type: JavaGenTask)
     }
 }

@@ -1,12 +1,3 @@
-//: Playground - noun: a place where people can play
-
-import UIKit
-
-///////////////////////////////////////////////////////////////////////////////////
-// PASTE GENERATED CODE HERE - BEGIN
-///////////////////////////////////////////////////////////////////////////////////
-
-
 
 enum FixTypeEnum: String, Codable
 {
@@ -25,7 +16,7 @@ struct Gpx: Codable
     var rtes: [Rte] = []
     var trks: [Trk] = []
     var extensions: [String:String] = [:]
-    
+
 }
 struct Metadata: Codable
 {
@@ -38,7 +29,7 @@ struct Metadata: Codable
     var keywords: String?
     var bounds: Bounds?
     var extensions: [String:String] = [:]
-    
+
 }
 struct Wpt: Codable
 {
@@ -63,7 +54,7 @@ struct Wpt: Codable
     var ageofdgpsdata: Double?
     var dgpsid: Int?
     var extensions: [String:String] = [:]
-    
+
 }
 struct Rte: Codable
 {
@@ -76,7 +67,7 @@ struct Rte: Codable
     var type: String?
     var extensions: [String:String] = [:]
     var rtepts: [Wpt] = []
-    
+
 }
 struct Trk: Codable
 {
@@ -89,40 +80,40 @@ struct Trk: Codable
     var type: String?
     var extensions: [String:String] = [:]
     var trksegs: [Trkseg] = []
-    
+
 }
 struct Trkseg: Codable
 {
     var trkpts: [Wpt] = []
     var extensions: [String] = []
-    
+
 }
 struct Copyright: Codable
 {
     var author: String = ""
     var year: Int?
     var license: String?
-    
+
 }
 struct Link: Codable
 {
     var href: String = ""
     var text: String?
     var type: String?
-    
+
 }
 struct Email: Codable
 {
     var id: String = ""
     var domain: String = ""
-    
+
 }
 struct Person: Codable
 {
     var name: String?
     var email: Email?
     var link: Link?
-    
+
 }
 struct Pt: Codable
 {
@@ -130,7 +121,7 @@ struct Pt: Codable
     var lon: Double = 0.0
     var ele: Double?
     var time: Date?
-    
+
 }
 struct Bounds: Codable
 {
@@ -138,7 +129,7 @@ struct Bounds: Codable
     var minlon: Double = 0.0
     var maxlat: Double = 0.0
     var maxlon: Double = 0.0
-    
+
 }
 extension Gpx: Hashable
 {
@@ -153,7 +144,7 @@ extension Gpx: Hashable
         result = 31 * result + extensions.count
         return result;
     }
-    
+
     static func ==(rhs: Gpx, lhs: Gpx) -> Bool {
         guard lhs.version == rhs.version else { return false }
         guard lhs.creator == rhs.creator else { return false }
@@ -180,7 +171,7 @@ extension Metadata: Hashable
         result = 31 * result + extensions.count
         return result;
     }
-    
+
     static func ==(rhs: Metadata, lhs: Metadata) -> Bool {
         guard lhs.name == rhs.name else { return false }
         guard lhs.desc == rhs.desc else { return false }
@@ -221,7 +212,7 @@ extension Wpt: Hashable
         result = 31 * result + extensions.count
         return result;
     }
-    
+
     static func ==(rhs: Wpt, lhs: Wpt) -> Bool {
         guard lhs.lat == rhs.lat else { return false }
         guard lhs.lon == rhs.lon else { return false }
@@ -262,7 +253,7 @@ extension Rte: Hashable
         result = 31 * result + rtepts.count
         return result;
     }
-    
+
     static func ==(rhs: Rte, lhs: Rte) -> Bool {
         guard lhs.name == rhs.name else { return false }
         guard lhs.cmt == rhs.cmt else { return false }
@@ -291,7 +282,7 @@ extension Trk: Hashable
         result = 31 * result + trksegs.count
         return result;
     }
-    
+
     static func ==(rhs: Trk, lhs: Trk) -> Bool {
         guard lhs.name == rhs.name else { return false }
         guard lhs.cmt == rhs.cmt else { return false }
@@ -313,7 +304,7 @@ extension Trkseg: Hashable
         result = 31 * result + extensions.count
         return result;
     }
-    
+
     static func ==(rhs: Trkseg, lhs: Trkseg) -> Bool {
         guard lhs.trkpts == rhs.trkpts else { return false }
         guard lhs.extensions == rhs.extensions else { return false }
@@ -329,7 +320,7 @@ extension Copyright: Hashable
         if let license = license { result = 31 * result + license.hashValue }
         return result;
     }
-    
+
     static func ==(rhs: Copyright, lhs: Copyright) -> Bool {
         guard lhs.author == rhs.author else { return false }
         guard lhs.year == rhs.year else { return false }
@@ -346,7 +337,7 @@ extension Link: Hashable
         if let type = type { result = 31 * result + type.hashValue }
         return result;
     }
-    
+
     static func ==(rhs: Link, lhs: Link) -> Bool {
         guard lhs.href == rhs.href else { return false }
         guard lhs.text == rhs.text else { return false }
@@ -362,7 +353,7 @@ extension Email: Hashable
         result = 31 * result + domain.hashValue
         return result;
     }
-    
+
     static func ==(rhs: Email, lhs: Email) -> Bool {
         guard lhs.id == rhs.id else { return false }
         guard lhs.domain == rhs.domain else { return false }
@@ -378,7 +369,7 @@ extension Person: Hashable
         if let link = link { result = 31 * result + link.hashValue }
         return result;
     }
-    
+
     static func ==(rhs: Person, lhs: Person) -> Bool {
         guard lhs.name == rhs.name else { return false }
         guard lhs.email == rhs.email else { return false }
@@ -396,7 +387,7 @@ extension Pt: Hashable
         if let time = time { result = 31 * result + time.hashValue }
         return result;
     }
-    
+
     static func ==(rhs: Pt, lhs: Pt) -> Bool {
         guard lhs.lat == rhs.lat else { return false }
         guard lhs.lon == rhs.lon else { return false }
@@ -415,7 +406,7 @@ extension Bounds: Hashable
         result = 31 * result + maxlon.hashValue
         return result;
     }
-    
+
     static func ==(rhs: Bounds, lhs: Bounds) -> Bool {
         guard lhs.minlat == rhs.minlat else { return false }
         guard lhs.minlon == rhs.minlon else { return false }
@@ -424,35 +415,3 @@ extension Bounds: Hashable
         return true;
     }
 }
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-// PASTE GENERATED CODE HERE - END
-///////////////////////////////////////////////////////////////////////////////////
-
-
-let wpt = Wpt(lat:99.5,lon:45.0,ele:0.0, time:nil, magvar:nil, geoidheight:nil, name:"Los Vegus", cmt: "dump", desc:"man-made vaca", src:nil, links:[], sym:nil, type:nil, fix:._2d, sat:nil, hdop:nil, vdop:nil, pdop:nil, ageofdgpsdata:nil, dgpsid:nil, extensions: [:])
-let email = Email(id: "big@cat.com", domain: "big never replies")
-let link = Link(href:"http://airport.cat.com", text:"Big Cat Airport", type: "article")
-let dude = Person(name: "Dude", email: email, link: link)
-let copyright = Copyright(author: "Dude", year: 2017, license: "Creative Commons")
-let meta = Metadata(name: "City", desc: "city meta", author:dude, copyright: copyright, links: [link], time: nil, keywords:"city,meta", bounds:nil, extensions:[:])
-let gpx = Gpx(creator:"Dude", metadata:nil,wpts: [wpt], rtes:[], trks:[], extensions:[:])
-
-var encoder = JSONEncoder()
-encoder.outputFormatting = .prettyPrinted
-let decoder = JSONDecoder()
-
-print("The result of encoding a \(type(of:gpx))")
-let encodedItem = try encoder.encode(gpx)
-print(String(data: encodedItem, encoding: .utf8)!)
-print()
-
-let item_out = try decoder.decode(Gpx.self, from: encodedItem)
-print("\t\(item_out)")
-
-print("gpx == item_out: \(gpx == item_out)")
-assert(gpx == item_out, "marshall round trip")
-
-

@@ -18,7 +18,7 @@ class JavaGenPlugin implements Plugin<Project>
 {
     void apply(Project project)
     {
-        project.extensions.create("gen", com.javagen.gen.kotlin.KotlinGen)
+        project.extensions.create("gen", com.javagen.schema.kotlin.KotlinGen)
         project.task('gen', type: JavaGenTask)
     }
 }
