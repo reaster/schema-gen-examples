@@ -1,1 +1,1 @@
-include ':java-gpx', ':swift-gpx', ':kotlin-gpx'
+include ':java-gpx', ':swift-gpx', ':kotlin-gpx', ':gpx', ':java-atom'

@@ -46,7 +46,7 @@ public class Wpt
     @Min(0)
     @Max(1023)
     private Integer dgpsid;
-    private java.util.Map<String,Object> extensions = new java.util.TreeMap<>();
+    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
 
     @Override
     public String toString() {
@@ -256,14 +256,14 @@ public class Wpt
         this.dgpsid = dgpsid;
     }
     @JsonAnyGetter
-    public java.util.Map<String,Object> getExtensions() {
+    public java.util.Map<String,String> getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,Object> extensions) {
+    public void setExtensions(java.util.Map<String,String> extensions) {
         this.extensions = extensions;
     }
     @JsonAnySetter
-    public void putExtensions(String key, Object value) {
+    public void putExtensions(String key, String value) {
         this.extensions.put(key, value);
     }
 }

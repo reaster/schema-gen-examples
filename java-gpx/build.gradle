@@ -7,41 +7,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.javagen:schema-gen:1.0.0-SNAPSHOT'
-    }
-}
-
-
-class JavaGenPlugin implements Plugin<Project>
-{
-    void apply(Project project)
-    {
-        project.extensions.create("gen", com.javagen.schema.swift.SwiftGen)
-        project.task('gen', type: JavaGenTask)
-    }
-}
-
-class JavaGenTask extends org.gradle.api.DefaultTask
-{
-    @Override String getGroup() { return 'code generation' }
-
-    @org.gradle.api.tasks.TaskAction
-    def gen() {
-        project.gen.srcDir = new File(project.projectDir, project.gen.srcDir.toString())
-        println '--------------java-gen-------------------'
-        println "input - schema: ${project.gen.schemaFile}"
-        println "ouput -   java: ${project.gen.srcDir}"
-        project.gen.gen()
+        classpath 'com.javagen:schema-gen:0.9.0'
     }
 }
 
 apply plugin: 'groovy'
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: JavaGenPlugin
+apply plugin: 'com.javagen.schema-gen'
 
-gen {
-    schemaFile = new File('src/main/resources/gpx.xsd').toURI().toURL()
+schemaGen {
+    java {
+        schemaURL = new URL('file:src/main/resources/gpx.xsd')
+    }
 }
 
 sourceSets {
@@ -64,3 +40,27 @@ dependencies {
     compile 'org.glassfish:javax.el:3.0.1-b08'
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 }
+
+//class JavaGenPlugin implements Plugin<Project>
+//{
+//    void apply(Project project)
+//    {
+//        project.extensions.create("gen", com.javagen.schema.java.JavaGen)
+//        project.task('gen', type: JavaGenTask)
+//    }
+//}
+//
+//class JavaGenTask extends org.gradle.api.DefaultTask
+//{
+//    @Override String getGroup() { return 'code generation' }
+//
+//    @org.gradle.api.tasks.TaskAction
+//    def gen() {
+//        project.gen.srcDir = new File(project.projectDir, project.gen.srcDir.toString())
+//        println '--------------java-gen-------------------'
+//        println "input - schema: ${project.gen.schemaFile}"
+//        println "ouput -   java: ${project.gen.srcDir}"
+//        project.gen.gen()
+//    }
+//}
+

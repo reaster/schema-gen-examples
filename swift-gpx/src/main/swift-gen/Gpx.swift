@@ -7,6 +7,7 @@ enum FixTypeEnum: String, Codable
     case None = "none"
     case Pps = "pps"
 }
+
 struct Gpx: Codable
 {
     let version: String = "1.1"
@@ -18,6 +19,7 @@ struct Gpx: Codable
     var extensions: [String:String] = [:]
 
 }
+
 struct Metadata: Codable
 {
     var name: String?
@@ -31,6 +33,7 @@ struct Metadata: Codable
     var extensions: [String:String] = [:]
 
 }
+
 struct Wpt: Codable
 {
     var lat: Double = 0.0
@@ -56,6 +59,7 @@ struct Wpt: Codable
     var extensions: [String:String] = [:]
 
 }
+
 struct Rte: Codable
 {
     var name: String?
@@ -69,6 +73,7 @@ struct Rte: Codable
     var rtepts: [Wpt] = []
 
 }
+
 struct Trk: Codable
 {
     var name: String?
@@ -82,12 +87,14 @@ struct Trk: Codable
     var trksegs: [Trkseg] = []
 
 }
+
 struct Trkseg: Codable
 {
     var trkpts: [Wpt] = []
     var extensions: [String] = []
 
 }
+
 struct Copyright: Codable
 {
     var author: String = ""
@@ -95,6 +102,7 @@ struct Copyright: Codable
     var license: String?
 
 }
+
 struct Link: Codable
 {
     var href: String = ""
@@ -102,12 +110,14 @@ struct Link: Codable
     var type: String?
 
 }
+
 struct Email: Codable
 {
     var id: String = ""
     var domain: String = ""
 
 }
+
 struct Person: Codable
 {
     var name: String?
@@ -115,6 +125,7 @@ struct Person: Codable
     var link: Link?
 
 }
+
 struct Pt: Codable
 {
     var lat: Double = 0.0
@@ -123,6 +134,7 @@ struct Pt: Codable
     var time: Date?
 
 }
+
 struct Bounds: Codable
 {
     var minlat: Double = 0.0
@@ -131,6 +143,7 @@ struct Bounds: Codable
     var maxlon: Double = 0.0
 
 }
+
 extension Gpx: Hashable
 {
     var hashValue: Int {
@@ -156,6 +169,7 @@ extension Gpx: Hashable
         return true;
     }
 }
+
 extension Metadata: Hashable
 {
     var hashValue: Int {
@@ -185,6 +199,7 @@ extension Metadata: Hashable
         return true;
     }
 }
+
 extension Wpt: Hashable
 {
     var hashValue: Int {
@@ -238,6 +253,7 @@ extension Wpt: Hashable
         return true;
     }
 }
+
 extension Rte: Hashable
 {
     var hashValue: Int {
@@ -267,6 +283,7 @@ extension Rte: Hashable
         return true;
     }
 }
+
 extension Trk: Hashable
 {
     var hashValue: Int {
@@ -296,6 +313,7 @@ extension Trk: Hashable
         return true;
     }
 }
+
 extension Trkseg: Hashable
 {
     var hashValue: Int {
@@ -311,6 +329,7 @@ extension Trkseg: Hashable
         return true;
     }
 }
+
 extension Copyright: Hashable
 {
     var hashValue: Int {
@@ -328,6 +347,7 @@ extension Copyright: Hashable
         return true;
     }
 }
+
 extension Link: Hashable
 {
     var hashValue: Int {
@@ -345,6 +365,7 @@ extension Link: Hashable
         return true;
     }
 }
+
 extension Email: Hashable
 {
     var hashValue: Int {
@@ -360,6 +381,7 @@ extension Email: Hashable
         return true;
     }
 }
+
 extension Person: Hashable
 {
     var hashValue: Int {
@@ -377,6 +399,7 @@ extension Person: Hashable
         return true;
     }
 }
+
 extension Pt: Hashable
 {
     var hashValue: Int {
@@ -396,6 +419,7 @@ extension Pt: Hashable
         return true;
     }
 }
+
 extension Bounds: Hashable
 {
     var hashValue: Int {

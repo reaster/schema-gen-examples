@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.javagen:schema-gen:1.0.0-SNAPSHOT'
+        classpath 'com.javagen:schema-gen:0.9.0'
     }
 }
 
@@ -41,7 +41,7 @@ apply plugin: 'maven'
 apply plugin: JavaGenPlugin
 
 gen {
-    schemaFile = new URL('http://docs.oasis-open.org/election/external/xAL.xsd')
+    schemaURL = new URL('http://docs.oasis-open.org/election/external/xAL.xsd')
 }
 
 defaultTasks 'clean', 'gen'

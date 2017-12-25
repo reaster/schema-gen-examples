@@ -1,4 +1,7 @@
-group 'org.w3.atom'
+/*
+This project demonstrates how to run multiple language code generators at once.
+ */
+group 'com.javagen'
 version '1.0.0-SNAPSHOT'
 
 buildscript {
@@ -11,28 +14,30 @@ buildscript {
     }
 }
 
-apply plugin: 'groovy'
+
+apply plugin: 'java'
 apply plugin: 'com.javagen.schema-gen'
 
 schemaGen {
-    java {
-        schemaURL = new URL('file:src/main/resources/atom.xsd')
-        packageName = 'org.w3.atom'
-        addSuffixToEnumClass = null
+    swift{
+        //srcDir = new File('src/main/swift')
     }
-}
+    kotlin {
+        //srcDir = new File('src/main/kotlin')
+    }
+    java {
+        //srcDir = new File('src/main/java')
+    }
 
-//defaultTasks 'clean', 'gen'
+ }
 
 sourceSets {
     main {
         java {
-            srcDir 'src/main/java-gen/'
+            srcDir 'src/main/java-gen'
         }
     }
 }
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenLocal()

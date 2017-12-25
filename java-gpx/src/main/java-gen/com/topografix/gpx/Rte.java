@@ -18,7 +18,7 @@ public class Rte
     private java.util.List<Link> links;
     private Integer number;
     private String type;
-    private java.util.Map<String,Object> extensions = new java.util.TreeMap<>();
+    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
     @JacksonXmlElementWrapper(localName="rtepts", useWrapping=false)
     @JacksonXmlProperty(localName="rtept")
     @Valid
@@ -116,14 +116,14 @@ public class Rte
         this.type = type;
     }
     @JsonAnyGetter
-    public java.util.Map<String,Object> getExtensions() {
+    public java.util.Map<String,String> getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,Object> extensions) {
+    public void setExtensions(java.util.Map<String,String> extensions) {
         this.extensions = extensions;
     }
     @JsonAnySetter
-    public void putExtensions(String key, Object value) {
+    public void putExtensions(String key, String value) {
         this.extensions.put(key, value);
     }
     public java.util.List<Wpt> getRtepts() {

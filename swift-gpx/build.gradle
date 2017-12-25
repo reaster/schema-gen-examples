@@ -1,70 +1,17 @@
-group 'com.javagen'
-version '1.0.0-SNAPSHOT'
-
 buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.javagen:schema-gen:1.0.0-SNAPSHOT'
+        classpath 'com.javagen:schema-gen:0.9.0'
     }
 }
 
+apply plugin: 'com.javagen.schema-gen'
 
-class JavaGenPlugin implements Plugin<Project>
-{
-    void apply(Project project)
-    {
-        project.extensions.create("gen", com.javagen.schema.java.JavaGen)
-        project.task('gen', type: JavaGenTask)
+schemaGen {
+    swift {
+        schemaURL = new URL('file:src/main/resources/gpx.xsd')
     }
-}
-
-class JavaGenTask extends org.gradle.api.DefaultTask
-{
-    @Override String getGroup() { return 'code generation' }
-
-    @org.gradle.api.tasks.TaskAction
-    def gen() {
-        project.gen.srcDir = new File(project.projectDir, project.gen.srcDir.toString())
-        println '--------------java-gen-------------------'
-        println "input - schema: ${project.gen.schemaFile}"
-        println "ouput -   java: ${project.gen.srcDir}"
-        project.gen.gen()
-    }
-}
-
-apply plugin: 'groovy'
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: JavaGenPlugin
-
-gen {
-    schemaFile = new File('src/resources/gpx.xsd').toURI().toURL()
-    //packageName = 'org.w3.atom'
-}
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src/swift-gen/'
-        }
-    }
-}
-
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
-dependencies {
-    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.0'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0'
-    compile 'org.hibernate.validator:hibernate-validator:6.0.2.Final'
-    compile 'org.glassfish:javax.el:3.0.1-b08'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 }

@@ -31,7 +31,7 @@ public class Gpx
     @JacksonXmlProperty(localName="trk")
     @Valid
     private java.util.List<Trk> trks;
-    private java.util.Map<String,Object> extensions = new java.util.TreeMap<>();
+    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
 
     @Override
     public String toString() {
@@ -120,14 +120,14 @@ public class Gpx
         this.trks.add(trk);
     }
     @JsonAnyGetter
-    public java.util.Map<String,Object> getExtensions() {
+    public java.util.Map<String,String> getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,Object> extensions) {
+    public void setExtensions(java.util.Map<String,String> extensions) {
         this.extensions = extensions;
     }
     @JsonAnySetter
-    public void putExtensions(String key, Object value) {
+    public void putExtensions(String key, String value) {
         this.extensions.put(key, value);
     }
 }
