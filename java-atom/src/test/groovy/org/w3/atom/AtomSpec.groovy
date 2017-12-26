@@ -14,7 +14,7 @@ import javax.validation.ValidatorFactory
 import javax.validation.Validator
 
 /**
- * Test GPX schama generated Java code using Black Rock City data.
+ * Test GPX schama generated Java code using small feed sample data.
  */
 class AtomSpec extends Specification
 {

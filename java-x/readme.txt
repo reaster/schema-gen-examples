@@ -1,3 +1,3 @@
-Generate model for GPX 1.1 format.
+Project holder for experimenting with new schemas.
 
-see: http://www.topografix.com/gpx/1/1/
+Working towards parsing KML files...

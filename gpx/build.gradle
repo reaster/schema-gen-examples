@@ -1,22 +1,23 @@
 /*
 This project demonstrates how to run multiple language code generators at once.
  */
-group 'com.javagen'
-version '1.0.0-SNAPSHOT'
+//plugins {
+//    id "com.javagen.schema-gen" version "0.9.0"
+//}
 
 buildscript {
     repositories {
-        mavenLocal()
-        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath 'com.javagen:schema-gen:0.9.0'
+        classpath "gradle.plugin.com.javagen:schema-gen:0.9.0"
     }
 }
 
-
-apply plugin: 'java'
-apply plugin: 'com.javagen.schema-gen'
+apply plugin: 'groovy'
+apply plugin: "com.javagen.schema-gen"
 
 schemaGen {
     swift{
@@ -30,6 +31,9 @@ schemaGen {
     }
 
  }
+
+group 'com.javagen'
+version '1.0.0-SNAPSHOT'
 
 sourceSets {
     main {

@@ -3,48 +3,27 @@ version '1.0.0-SNAPSHOT'
 
 buildscript {
     repositories {
-        mavenLocal()
-        mavenCentral()
+        mavenLocal() //want to use the local copy we're developing
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath 'com.javagen:schema-gen:0.9.0'
+        classpath "com.javagen:schema-gen:0.9.1"
     }
 }
 
-
-class JavaGenPlugin implements Plugin<Project>
-{
-    void apply(Project project)
-    {
-        project.extensions.create("gen", com.javagen.schema.java.JavaGen)
-        project.task('gen', type: JavaGenTask)
-    }
-}
-
-class JavaGenTask extends org.gradle.api.DefaultTask
-{
-    @Override String getGroup() { return 'code generation' }
-
-    @org.gradle.api.tasks.TaskAction
-    def gen() {
-        project.gen.srcDir = new File(project.projectDir, project.gen.srcDir.toString())
-        println '--------------java-gen-------------------'
-        println "input - schema: ${project.gen.schemaFile}"
-        println "ouput -   java: ${project.gen.srcDir}"
-        project.gen.gen()
-    }
-}
 
 apply plugin: 'groovy'
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: JavaGenPlugin
+apply plugin: 'com.javagen.schema-gen'
 
-gen {
-    schemaURL = new URL('http://docs.oasis-open.org/election/external/xAL.xsd')
+schemaGen {
+    java {
+        schemaURL = new URL('file:src/main/resources/xAL.xsd')
+        //schemaURL = new URL('http://docs.oasis-open.org/election/external/xAL.xsd')
+    }
 }
 
-defaultTasks 'clean', 'gen'
 
 sourceSets {
     main {

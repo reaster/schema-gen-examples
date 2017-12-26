@@ -15,48 +15,48 @@ import static spock.util.matcher.HamcrestSupport.that
 import spock.lang.*
 
 /**
- * Test GPX schama generated Java code using Black Rock City data.
+ * Test reading and writing shema data.
  */
 class GpxSpec extends Specification
 {
-    @Shared
-    def xml = """
-            <gpx version="1.1" creator="GDAL 2.1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
-                <metadata>
-                    <bounds minlat="440.754783000000003" minlon="-119.235483000000045" maxlat="40.768217000000007" maxlon="-119.188467000000031"/>
-                </metadata>              
-                <wpt lat="40.802539947498559" lon="-119.19423675437848">
-                  <name>Abomination</name>
-                  <extensions>
-                    <ogr:description>ID: 7650</ogr:description>
-                    <ogr:tessellate>-1</ogr:tessellate>
-                    <ogr:extrude>0</ogr:extrude>
-                    <ogr:visibility>-1</ogr:visibility>
-                  </extensions>
-                </wpt>
-                <wpt lat="40.789547754060159" lon="-119.211019828752043">
-                  <name>Akle' the Dragon</name>
-                </wpt>
-                <trk>
-                  <name>Runway 7L/25R</name>
-                  <trkseg>
-                    <trkpt lat="40.754783" lon="-119.235483">
-                    </trkpt>
-                    <trkpt lat="40.76095" lon="-119.218083">
-                    </trkpt>
-                  </trkseg>
-                </trk>
-                <trk>
-                  <name>Runway 7R/25L</name>
-                  <trkseg>
-                    <trkpt lat="40.762767" lon="-119.20625">
-                    </trkpt>
-                    <trkpt lat="40.768217" lon="-119.188467">
-                    </trkpt>
-                  </trkseg>
-                </trk>
-            </gpx>"""
-
+//    @Shared
+//    def xml = """
+//            <gpx version="1.1" creator="GDAL 2.1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+//                <metadata>
+//                    <bounds minlat="440.754783000000003" minlon="-119.235483000000045" maxlat="40.768217000000007" maxlon="-119.188467000000031"/>
+//                </metadata>
+//                <wpt lat="40.802539947498559" lon="-119.19423675437848">
+//                  <name>Abomination</name>
+//                  <extensions>
+//                    <ogr:description>ID: 7650</ogr:description>
+//                    <ogr:tessellate>-1</ogr:tessellate>
+//                    <ogr:extrude>0</ogr:extrude>
+//                    <ogr:visibility>-1</ogr:visibility>
+//                  </extensions>
+//                </wpt>
+//                <wpt lat="40.789547754060159" lon="-119.211019828752043">
+//                  <name>Akle' the Dragon</name>
+//                </wpt>
+//                <trk>
+//                  <name>Runway 7L/25R</name>
+//                  <trkseg>
+//                    <trkpt lat="40.754783" lon="-119.235483">
+//                    </trkpt>
+//                    <trkpt lat="40.76095" lon="-119.218083">
+//                    </trkpt>
+//                  </trkseg>
+//                </trk>
+//                <trk>
+//                  <name>Runway 7R/25L</name>
+//                  <trkseg>
+//                    <trkpt lat="40.762767" lon="-119.20625">
+//                    </trkpt>
+//                    <trkpt lat="40.768217" lon="-119.188467">
+//                    </trkpt>
+//                  </trkseg>
+//                </trk>
+//            </gpx>"""
+//
 //    def testXmlParsing()
 //    {
 //        given: "a Jackson parser"
