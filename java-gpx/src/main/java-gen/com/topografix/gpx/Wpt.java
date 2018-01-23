@@ -10,7 +10,7 @@ import javax.validation.constraints.Max;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class Wpt
+public class Wpt 
 {
     @JacksonXmlProperty(isAttribute = true)
     @DecimalMin("-90.0")
@@ -51,6 +51,10 @@ public class Wpt
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Wpt[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("lat=").append(lat);
         sb.append(", lon=").append(lon);
         sb.append(", ele=").append(ele);
@@ -72,7 +76,6 @@ public class Wpt
         sb.append(", ageofdgpsdata=").append(ageofdgpsdata);
         sb.append(", dgpsid=").append(dgpsid);
         sb.append(", extensions=").append(extensions);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

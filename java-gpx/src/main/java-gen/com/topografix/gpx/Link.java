@@ -3,7 +3,7 @@ package com.topografix.gpx;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.constraints.NotNull;
 
-public class Link
+public class Link 
 {
     @JacksonXmlProperty(isAttribute = true)
     @NotNull
@@ -14,10 +14,13 @@ public class Link
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Link[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("href=").append(href);
         sb.append(", text=").append(text);
         sb.append(", type=").append(type);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

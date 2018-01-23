@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(value = {"schemaLocation"})
-public class Gpx
+public class Gpx 
 {
     @JacksonXmlProperty(isAttribute = true)
     @NotNull
@@ -36,6 +36,10 @@ public class Gpx
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Gpx[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("version=").append(version);
         sb.append(", creator=").append(creator);
         sb.append(", metadata=").append(metadata);
@@ -43,7 +47,6 @@ public class Gpx
         sb.append(", rtes=").append(rtes);
         sb.append(", trks=").append(trks);
         sb.append(", extensions=").append(extensions);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

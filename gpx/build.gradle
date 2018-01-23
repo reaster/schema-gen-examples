@@ -1,33 +1,26 @@
 /*
 This project demonstrates how to run multiple language code generators at once.
  */
-//plugins {
-//    id "com.javagen.schema-gen" version "0.9.0"
+//buildscript {
+//    repositories {
+//        maven { url "https://plugins.gradle.org/m2/"  }
+//    }
+//    dependencies {
+//        classpath "gradle.plugin.com.javagen:schema-gen:0.9.0"
+//    }
 //}
-
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "gradle.plugin.com.javagen:schema-gen:0.9.0"
-    }
-}
 
 apply plugin: 'groovy'
 apply plugin: "com.javagen.schema-gen"
 
 schemaGen {
     swift{
-        //srcDir = new File('src/main/swift')
     }
     kotlin {
-        //srcDir = new File('src/main/kotlin')
+        packageName = 'com.topografix.gpx.kotlin'
     }
     java {
-        //srcDir = new File('src/main/java')
+        packageName = 'com.topografix.gpx.java'
     }
 
  }
@@ -39,6 +32,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/main/java-gen'
+            srcDir 'src/main/kotlin-gen'
         }
     }
 }

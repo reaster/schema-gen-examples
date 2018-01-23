@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class Trkseg
+public class Trkseg 
 {
     @JacksonXmlElementWrapper(localName="trkpts", useWrapping=false)
     @JacksonXmlProperty(localName="trkpt")
@@ -17,9 +17,12 @@ public class Trkseg
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Trkseg[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("trkpts=").append(trkpts);
         sb.append(", extensions=").append(extensions);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema xmlns='http://www.w3.org/2001/XMLSchema'
+        elementFormDefault='qualified'
+        targetNamespace='http://javagen.com/a'
+        xmlns:a='http://javagen.com/a' version='1.0.0'>
+
+    <import namespace='http://javagen.com/a' schemaLocation='./a.xsd' />
+    <import namespace='http://javagen.com/b' schemaLocation='./b.xsd' />
+</schema>

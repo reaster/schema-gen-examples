@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        targetNamespace="http://javagen.com/a"
+        xmlns:a="http://javagen.com/a" version="1.0.0">
+
+    <complexType name="AType">
+        <choice minOccurs="0" maxOccurs="unbounded">
+            <element name="fee" type="xs:string"/>
+        </choice>
+    </complexType>
+</schema>

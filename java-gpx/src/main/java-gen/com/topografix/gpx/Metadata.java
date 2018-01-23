@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class Metadata
+public class Metadata 
 {
     private String name;
     private String desc;
@@ -27,6 +27,10 @@ public class Metadata
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Metadata[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("name=").append(name);
         sb.append(", desc=").append(desc);
         sb.append(", author=").append(author);
@@ -36,7 +40,6 @@ public class Metadata
         sb.append(", keywords=").append(keywords);
         sb.append(", bounds=").append(bounds);
         sb.append(", extensions=").append(extensions);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

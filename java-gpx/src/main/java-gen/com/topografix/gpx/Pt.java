@@ -4,7 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.DecimalMax;
 
-public class Pt
+public class Pt 
 {
     @JacksonXmlProperty(isAttribute = true)
     @DecimalMin("-90.0")
@@ -20,11 +20,14 @@ public class Pt
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Pt[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("lat=").append(lat);
         sb.append(", lon=").append(lon);
         sb.append(", ele=").append(ele);
         sb.append(", time=").append(time);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

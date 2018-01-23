@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class Trk
+public class Trk 
 {
     private String name;
     private String cmt;
@@ -27,6 +27,10 @@ public class Trk
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Trk[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("name=").append(name);
         sb.append(", cmt=").append(cmt);
         sb.append(", desc=").append(desc);
@@ -36,7 +40,6 @@ public class Trk
         sb.append(", type=").append(type);
         sb.append(", extensions=").append(extensions);
         sb.append(", trksegs=").append(trksegs);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

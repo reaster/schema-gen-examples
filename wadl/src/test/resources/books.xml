@@ -1,0 +1,26 @@
+<application xmlns="http://wadl.dev.java.net/2009/02">
+    <resources base="http://example.com/api">
+       <resource path="books">
+           <method name="GET"/>
+
+           <resource path="{bookId}">
+               <param required="true" style="template" name="bookId"/>
+               <method name="GET"/>
+               <method name="DELETE"/>
+               <resource path="reviews">
+                   <method name="GET">
+                       <request>
+                           <param name="page" required="false" default="1" style="query"/>
+                           <param name="size" required="false" default="20" style="query"/>
+                       </request>
+                   </method>
+               </resource>
+           </resource>
+
+        </resource>
+
+        <resource path="readers">
+            <method name="GET"/>
+        </resource>
+    </resources>
+</application>

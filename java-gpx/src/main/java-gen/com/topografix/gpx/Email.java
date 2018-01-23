@@ -3,7 +3,7 @@ package com.topografix.gpx;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.constraints.NotNull;
 
-public class Email
+public class Email 
 {
     @JacksonXmlProperty(isAttribute = true)
     @NotNull
@@ -15,9 +15,12 @@ public class Email
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Email[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("id=").append(id);
         sb.append(", domain=").append(domain);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

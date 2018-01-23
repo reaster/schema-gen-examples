@@ -16,7 +16,7 @@ struct Gpx: Codable
     var wpts: [Wpt] = []
     var rtes: [Rte] = []
     var trks: [Trk] = []
-    var extensions: [String:String] = [:]
+    var extensions: Extensions?
 
 }
 
@@ -30,7 +30,7 @@ struct Metadata: Codable
     var time: Date?
     var keywords: String?
     var bounds: Bounds?
-    var extensions: [String:String] = [:]
+    var extensions: Extensions?
 
 }
 
@@ -56,7 +56,7 @@ struct Wpt: Codable
     var pdop: Double?
     var ageofdgpsdata: Double?
     var dgpsid: Int?
-    var extensions: [String:String] = [:]
+    var extensions: Extensions?
 
 }
 
@@ -69,7 +69,7 @@ struct Rte: Codable
     var links: [Link] = []
     var number: Int32?
     var type: String?
-    var extensions: [String:String] = [:]
+    var extensions: Extensions?
     var rtepts: [Wpt] = []
 
 }
@@ -83,7 +83,7 @@ struct Trk: Codable
     var links: [Link] = []
     var number: Int32?
     var type: String?
-    var extensions: [String:String] = [:]
+    var extensions: Extensions?
     var trksegs: [Trkseg] = []
 
 }
@@ -154,7 +154,7 @@ extension Gpx: Hashable
         result = 31 * result + wpts.count
         result = 31 * result + rtes.count
         result = 31 * result + trks.count
-        result = 31 * result + extensions.count
+        if let extensions = extensions { result = 31 * result + extensions.hashValue }
         return result;
     }
 
@@ -182,7 +182,7 @@ extension Metadata: Hashable
         if let time = time { result = 31 * result + time.hashValue }
         if let keywords = keywords { result = 31 * result + keywords.hashValue }
         if let bounds = bounds { result = 31 * result + bounds.hashValue }
-        result = 31 * result + extensions.count
+        if let extensions = extensions { result = 31 * result + extensions.hashValue }
         return result;
     }
 
@@ -224,7 +224,7 @@ extension Wpt: Hashable
         if let pdop = pdop { result = 31 * result + pdop.hashValue }
         if let ageofdgpsdata = ageofdgpsdata { result = 31 * result + ageofdgpsdata.hashValue }
         if let dgpsid = dgpsid { result = 31 * result + dgpsid.hashValue }
-        result = 31 * result + extensions.count
+        if let extensions = extensions { result = 31 * result + extensions.hashValue }
         return result;
     }
 
@@ -265,7 +265,7 @@ extension Rte: Hashable
         result = 31 * result + links.count
         if let number = number { result = 31 * result + number.hashValue }
         if let type = type { result = 31 * result + type.hashValue }
-        result = 31 * result + extensions.count
+        if let extensions = extensions { result = 31 * result + extensions.hashValue }
         result = 31 * result + rtepts.count
         return result;
     }
@@ -295,7 +295,7 @@ extension Trk: Hashable
         result = 31 * result + links.count
         if let number = number { result = 31 * result + number.hashValue }
         if let type = type { result = 31 * result + type.hashValue }
-        result = 31 * result + extensions.count
+        if let extensions = extensions { result = 31 * result + extensions.hashValue }
         result = 31 * result + trksegs.count
         return result;
     }

@@ -1,6 +1,15 @@
 /**
  * The parent build is kept minimal so child build.gradle files can be copied as stand-alone starter templates.
  */
-subprojects {
-    apply plugin: 'java'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenLocal()
+    }
+    dependencies {
+//        classpath "com.javagen:schema-gen:0.9.1"
+        classpath "gradle.plugin.com.javagen:schema-gen:0.9.1"
+    }
 }

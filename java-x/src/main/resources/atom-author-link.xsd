@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-  elementFormDefault="qualified"
-  targetNamespace="http://www.w3.org/2005/Atom"
-  xmlns:atom="http://www.w3.org/2005/Atom" version="1.0.0">
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        targetNamespace="http://www.w3.org/2005/Atom"
+        xmlns:atom="http://www.w3.org/2005/Atom" version="1.0.0">
 
   <annotation>
     <appinfo>atom-author-link.xsd 2008-01-23</appinfo>
@@ -20,8 +21,8 @@
     </choice>
   </complexType>
 
-  <element name="name" type="string"/>
-  <element name="uri" type="string"/>
+  <element name="name" type="xs:string"/>
+  <element name="uri" type="xs:string"/>
   <element name="email" type="atom:atomEmailAddress"/>
 
   <!-- atom:author -->
@@ -31,12 +32,12 @@
   <element name="link">
     <complexType>
 
-      <attribute name="href" use="required"/>
-      <attribute name="rel"/>
+      <attribute name="href" type="xs:string" use="required"/>
+      <attribute name="rel" type="xs:string"/>
       <attribute name="type" type="atom:atomMediaType"/>
       <attribute name="hreflang" type="atom:atomLanguageTag"/>
-      <attribute name="title"/>
-      <attribute name="length"/>
+      <attribute name="title" type="xs:string"/>
+      <attribute name="length" type="xs:int"/>
 
     </complexType>
 
@@ -44,21 +45,21 @@
 
   <!-- Whatever a media type is, it contains at least one slash -->
   <simpleType name="atomMediaType">
-    <restriction base="string">
+    <restriction base="xs:string">
       <pattern value=".+/.+"/>
     </restriction>
   </simpleType>
 
   <!-- As defined in RFC 3066 -->
   <simpleType name="atomLanguageTag">
-    <restriction base="string">
+    <restriction base="xs:string">
       <pattern value="[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})*"/>
     </restriction>
   </simpleType>
 
   <!-- Whatever an email address is, it contains at least one @ -->
   <simpleType name="atomEmailAddress">
-    <restriction base="string">
+    <restriction base="xs:string">
       <pattern value=".+@.+"/>
     </restriction>
   </simpleType>

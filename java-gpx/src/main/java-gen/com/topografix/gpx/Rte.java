@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class Rte
+public class Rte 
 {
     private String name;
     private String cmt;
@@ -27,6 +27,10 @@ public class Rte
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Rte[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("name=").append(name);
         sb.append(", cmt=").append(cmt);
         sb.append(", desc=").append(desc);
@@ -36,7 +40,6 @@ public class Rte
         sb.append(", type=").append(type);
         sb.append(", extensions=").append(extensions);
         sb.append(", rtepts=").append(rtepts);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

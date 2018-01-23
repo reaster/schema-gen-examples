@@ -3,7 +3,7 @@ package com.topografix.gpx;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.constraints.NotNull;
 
-public class Copyright
+public class Copyright 
 {
     @JacksonXmlProperty(isAttribute = true)
     @NotNull
@@ -14,10 +14,13 @@ public class Copyright
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Copyright[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("author=").append(author);
         sb.append(", year=").append(year);
         sb.append(", license=").append(license);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {

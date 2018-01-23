@@ -2,7 +2,7 @@ package com.topografix.gpx;
 
 import javax.validation.Valid;
 
-public class Person
+public class Person 
 {
     private String name;
     @Valid
@@ -13,10 +13,13 @@ public class Person
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Person[");
+        toString(sb);
+        return sb.append("]").toString();
+    }
+    protected void toString(StringBuilder sb) {
         sb.append("name=").append(name);
         sb.append(", email=").append(email);
         sb.append(", link=").append(link);
-        return sb.append("]").toString();
     }
     @Override
     public boolean equals(Object o) {
