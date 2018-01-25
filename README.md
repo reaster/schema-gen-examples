@@ -4,6 +4,8 @@ These examples are also meant to serve as templates for getting your own project
 
 The generated source code is checked-in so you don't have to setup a build to see the output.
 
+[![Build Status](https://travis-ci.org/reaster/schema-gen-examples.svg?branch=master)](https://travis-ci.org/reaster/schema-gen-examples)
+
 ## Usage
 
 To remove the checked-in generated code, use the genClean task:
