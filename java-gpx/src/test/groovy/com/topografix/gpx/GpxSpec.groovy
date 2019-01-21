@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 
+
 import javax.validation.ConstraintViolation
 import javax.validation.Validation
 import javax.validation.ValidatorFactory
@@ -173,5 +174,43 @@ class GpxSpec extends Specification
         v1.leafBean instanceof Bounds
         v1.getInvalidValue() == gpx.metadata.bounds.minlat
     }
+
+    def testJson()
+    {
+        given: "Jackson parser and xml file"
+
+        ObjectMapper jsonMapper = new ObjectMapper();
+        jsonMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//        jsonMapper.configure(SerializationFeature.)
+        ObjectMapper xmlMapper = new XmlMapper()
+        xmlMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        xmlMapper.configure(SerializationFeature.INDENT_OUTPUT, true)
+        File file = new File('src/test/resources/BlackRockCity.gpx')
+        InputStream inputStream = new FileInputStream(file)
+
+        when: "marshall xml code into schema-gen generated POJOs"
+        com.topografix.gpx.Gpx gpx = xmlMapper.readValue(inputStream, com.topografix.gpx.Gpx.class)
+
+        then: "confirm basic signature of expected attribute and element data"
+        gpx != null
+        gpx.version == '1.1'
+        gpx.wpts.size() >= 648
+        gpx.trks.size() >= 66
+
+        when: "unmasshall to JSON"
+        String json1 = jsonMapper.writeValueAsString(gpx);
+
+        then: "confirm expected data present"
+        println json1
+        json1.contains('11:55 Reformation Portal')
+
+        when: "remarshall JSON to POJOs"
+        com.topografix.gpx.Gpx gpx2 = jsonMapper.readValue(json1, com.topografix.gpx.Gpx.class);
+
+        then: "confirm round trip produces identical data"
+        gpx == gpx2
+    }
+
+
 
 }

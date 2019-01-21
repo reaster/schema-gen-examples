@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+        xmlns="http://www.topografix.com/GPX/1/1"
+        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"
+        version="1.1"
+        creator="HotSpringsFinder.com">
+    <wpt lat="45.826944" lon="-115.436667">
+        <ele>4006</ele>
+        <time>2018-04-08T11:35:28Z</time>
+        <name>Elk City, Idaho</name>
+        <cmt>Elk City is an unincorporated census-designated place in Idaho County, Idaho, United States. As of the 2010 census, its population was 202.</cmt>
+        <desc>Elk City was the site of a gold strike in 1861, as prospectors rushed south from Pierce, two years before the formation of the Idaho Territory. In the 1870s, Chinese miners leased the claims but were later driven out by mistreatment. Quartz lode operations began in 1902 and dredging in 1935.</desc>
+        <sym>https://en.wikipedia.org/wiki/Elk_City,_Idaho</sym>
+        <type>city</type>
+     </wpt>
+</gpx>

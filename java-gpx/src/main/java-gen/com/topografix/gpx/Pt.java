@@ -14,7 +14,7 @@ public class Pt
     @DecimalMin("-180.0")
     @DecimalMax("180.0")
     private double lon;
-    private Double ele;
+    private double ele;
     private java.time.LocalDateTime time;
 
     @Override
@@ -36,7 +36,7 @@ public class Pt
         Pt other = (Pt)o;
         if (Double.compare(other.lat, lat) != 0) return false;
         if (Double.compare(other.lon, lon) != 0) return false;
-        if (ele != null ? !ele.equals(other.ele) : other.ele != null) return false;
+        if (Double.compare(other.ele, ele) != 0) return false;
         if (time != null ? !time.equals(other.time) : other.time != null) return false;
         return true;
     }
@@ -47,7 +47,8 @@ public class Pt
         result = 31 * result + (int) (latTemp ^ (latTemp >>> 32));
         final long lonTemp = Double.doubleToLongBits(lon);
         result = 31 * result + (int) (lonTemp ^ (lonTemp >>> 32));
-        result = 31 * result + (ele != null ? ele.hashCode() : 0);
+        final long eleTemp = Double.doubleToLongBits(ele);
+        result = 31 * result + (int) (eleTemp ^ (eleTemp >>> 32));
         result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
     }
@@ -63,10 +64,10 @@ public class Pt
     public void setLon(double lon) {
         this.lon = lon;
     }
-    public Double getEle() {
+    public double getEle() {
         return ele;
     }
-    public void setEle(Double ele) {
+    public void setEle(double ele) {
         this.ele = ele;
     }
     public java.time.LocalDateTime getTime() {

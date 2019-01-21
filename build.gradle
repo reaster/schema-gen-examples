@@ -9,7 +9,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-//        classpath "com.javagen:schema-gen:0.9.1"
-        classpath "gradle.plugin.com.javagen:schema-gen:0.9.1"
+        classpath "com.javagen:schema-gen:0.9.2"
+//        classpath "gradle.plugin.com.javagen:schema-gen:0.9.1"
     }
 }

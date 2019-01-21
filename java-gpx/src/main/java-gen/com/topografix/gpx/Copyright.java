@@ -8,7 +8,7 @@ public class Copyright
     @JacksonXmlProperty(isAttribute = true)
     @NotNull
     private String author;
-    private Integer year;
+    private int year;
     private String license;
 
     @Override
@@ -28,7 +28,7 @@ public class Copyright
         if (o == null || getClass() != o.getClass()) return false;
         Copyright other = (Copyright)o;
         if (author != null ? !author.equals(other.author) : other.author != null) return false;
-        if (year != null ? !year.equals(other.year) : other.year != null) return false;
+        if (year != other.year) return false;
         if (license != null ? !license.equals(other.license) : other.license != null) return false;
         return true;
     }
@@ -36,7 +36,7 @@ public class Copyright
     public int hashCode() {
         int result = 1;
         result = 31 * result + (author != null ? author.hashCode() : 0);
-        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + year;
         result = 31 * result + (license != null ? license.hashCode() : 0);
         return result;
     }
@@ -46,10 +46,10 @@ public class Copyright
     public void setAuthor(String author) {
         this.author = author;
     }
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
-    public void setYear(Integer year) {
+    public void setYear(int year) {
         this.year = year;
     }
     public String getLicense() {

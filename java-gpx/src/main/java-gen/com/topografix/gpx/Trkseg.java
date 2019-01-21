@@ -3,8 +3,6 @@ package com.topografix.gpx;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.Valid;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
 public class Trkseg 
 {
@@ -12,7 +10,8 @@ public class Trkseg
     @JacksonXmlProperty(localName="trkpt")
     @Valid
     private java.util.List<Wpt> trkpts;
-    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
+    @Valid
+    private Extensions extensions;
 
     @Override
     public String toString() {
@@ -51,15 +50,10 @@ public class Trkseg
             this.trkpts = new java.util.ArrayList<>();
         this.trkpts.add(trkpt);
     }
-    @JsonAnyGetter
-    public java.util.Map<String,String> getExtensions() {
+    public Extensions getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,String> extensions) {
+    public void setExtensions(Extensions extensions) {
         this.extensions = extensions;
-    }
-    @JsonAnySetter
-    public void putExtensions(String key, String value) {
-        this.extensions.put(key, value);
     }
 }

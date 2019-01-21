@@ -17,26 +17,26 @@ apply plugin: 'kotlin'
 apply plugin: 'groovy'
 apply plugin: 'com.javagen.schema-gen'
 
-schemaGen {
-    swift{
-        schemaURL = new URL('file:src/main/resources/wadl.xsd')
-        pluralService = new com.javagen.schema.common.PluralServiceNoop()
-        rootElements = ['application'] as Set
-    }
-    kotlin {
-        schemaURL = new URL('file:src/main/resources/wadl.xsd')
-        pluralService = new com.javagen.schema.common.PluralServiceNoop()
-        rootElements = ['application'] as Set
-        packageName = 'org.w3.xml.namespace.kotlin' //avoid Java-Kotlin clash
-    }
-    java {
-        schemaURL = new URL('file:src/main/resources/wadl.xsd')
-        pluralService = new com.javagen.schema.common.PluralServiceNoop()
-        rootElements = ['application'] as Set
-        packageName = 'org.w3.xml.namespace.java' //avoid Java-Kotlin clash
-    }
-
- }
+//schemaGen {
+//    swift{
+//        schemaURL = new URL('file:src/main/resources/wadl.xsd')
+//        pluralService = new com.javagen.schema.common.PluralServiceNoop()
+//        rootElements = ['application'] as Set
+//    }
+//    kotlin {
+//        schemaURL = new URL('file:src/main/resources/wadl.xsd')
+//        pluralService = new com.javagen.schema.common.PluralServiceNoop()
+//        rootElements = ['application'] as Set
+//        packageName = 'org.w3.xml.namespace.kotlin' //avoid Java-Kotlin clash
+//    }
+//    java {
+//        schemaURL = new URL('file:src/main/resources/wadl.xsd')
+//        pluralService = new com.javagen.schema.common.PluralServiceNoop()
+//        rootElements = ['application'] as Set
+//        packageName = 'org.w3.xml.namespace.java' //avoid Java-Kotlin clash
+//    }
+//
+// }
 
 group 'com.javagen'
 version '1.0.0-SNAPSHOT'

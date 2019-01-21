@@ -13,17 +13,17 @@ This project demonstrates how to run multiple language code generators at once.
 apply plugin: 'groovy'
 apply plugin: "com.javagen.schema-gen"
 
-schemaGen {
-    swift{
-    }
-    kotlin {
-        packageName = 'com.topografix.gpx.kotlin'
-    }
-    java {
-        packageName = 'com.topografix.gpx.java'
-    }
-
- }
+//schemaGen {
+//    swift{
+//    }
+//    kotlin {
+//        packageName = 'com.topografix.gpx.kotlin'
+//    }
+//    java {
+//        packageName = 'com.topografix.gpx.java'
+//    }
+//
+// }
 
 group 'com.javagen'
 version '1.0.0-SNAPSHOT'

@@ -13,11 +13,11 @@ version '1.0.0-SNAPSHOT'
 apply plugin: 'groovy'
 apply plugin: 'com.javagen.schema-gen'
 
-schemaGen {
-    java {
-        schemaURL = new URL('file:src/main/resources/gpx.xsd')
-    }
-}
+//schemaGen {
+//    java {
+//        schemaURL = new URL('file:src/main/resources/gpx.xsd')
+//    }
+//}
 
 sourceSets {
     main {

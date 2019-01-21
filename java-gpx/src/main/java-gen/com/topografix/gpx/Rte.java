@@ -3,8 +3,6 @@ package com.topografix.gpx;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.Valid;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
 public class Rte 
 {
@@ -16,9 +14,10 @@ public class Rte
     @JacksonXmlProperty(localName="link")
     @Valid
     private java.util.List<Link> links;
-    private Integer number;
+    private int number;
     private String type;
-    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
+    @Valid
+    private Extensions extensions;
     @JacksonXmlElementWrapper(localName="rtepts", useWrapping=false)
     @JacksonXmlProperty(localName="rtept")
     @Valid
@@ -51,7 +50,7 @@ public class Rte
         if (desc != null ? !desc.equals(other.desc) : other.desc != null) return false;
         if (src != null ? !src.equals(other.src) : other.src != null) return false;
         if (links != null ? !links.equals(other.links) : other.links != null) return false;
-        if (number != null ? !number.equals(other.number) : other.number != null) return false;
+        if (number != other.number) return false;
         if (type != null ? !type.equals(other.type) : other.type != null) return false;
         if (extensions != null ? !extensions.equals(other.extensions) : other.extensions != null) return false;
         if (rtepts != null ? !rtepts.equals(other.rtepts) : other.rtepts != null) return false;
@@ -65,7 +64,7 @@ public class Rte
         result = 31 * result + (desc != null ? desc.hashCode() : 0);
         result = 31 * result + (src != null ? src.hashCode() : 0);
         result = 31 * result + (links != null ? links.hashCode() : 0);
-        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + number;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (extensions != null ? extensions.hashCode() : 0);
         result = 31 * result + (rtepts != null ? rtepts.hashCode() : 0);
@@ -106,10 +105,10 @@ public class Rte
             this.links = new java.util.ArrayList<>();
         this.links.add(link);
     }
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
-    public void setNumber(Integer number) {
+    public void setNumber(int number) {
         this.number = number;
     }
     public String getType() {
@@ -118,16 +117,11 @@ public class Rte
     public void setType(String type) {
         this.type = type;
     }
-    @JsonAnyGetter
-    public java.util.Map<String,String> getExtensions() {
+    public Extensions getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,String> extensions) {
+    public void setExtensions(Extensions extensions) {
         this.extensions = extensions;
-    }
-    @JsonAnySetter
-    public void putExtensions(String key, String value) {
-        this.extensions.put(key, value);
     }
     public java.util.List<Wpt> getRtepts() {
         return rtepts;

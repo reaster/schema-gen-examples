@@ -4,11 +4,11 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.validation.constraints.NotNull;
 import javax.validation.Valid;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JsonIgnoreProperties(value = {"schemaLocation"})
+@JacksonXmlRootElement(localName = "gpx")
 public class Gpx 
 {
     @JacksonXmlProperty(isAttribute = true)
@@ -31,7 +31,8 @@ public class Gpx
     @JacksonXmlProperty(localName="trk")
     @Valid
     private java.util.List<Trk> trks;
-    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
+    @Valid
+    private Extensions extensions;
 
     @Override
     public String toString() {
@@ -122,15 +123,10 @@ public class Gpx
             this.trks = new java.util.ArrayList<>();
         this.trks.add(trk);
     }
-    @JsonAnyGetter
-    public java.util.Map<String,String> getExtensions() {
+    public Extensions getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,String> extensions) {
+    public void setExtensions(Extensions extensions) {
         this.extensions = extensions;
-    }
-    @JsonAnySetter
-    public void putExtensions(String key, String value) {
-        this.extensions.put(key, value);
     }
 }

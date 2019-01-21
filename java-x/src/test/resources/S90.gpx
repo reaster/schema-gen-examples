@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gpx
+        xmlns="http://www.topografix.com/GPX/1/1"
+        xmlns:gpxx = "http://www.garmin.com/xmlschemas/GpxExtensions/v3"
+        xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.topografix.com/GPX/1/1 ../../main/resources/gpx.xsd
+http://www.garmin.com/xmlschemas/GpxExtensions/v3 ../../main/resources/GpxExtensionsv3.xsd"
+        version="1.1"
+        creator="gpx-poi.com">
+    <wpt lat="45.822686" lon="-115.439840">
+        <ele>4097</ele>
+        <time>2018-04-08T11:18:26Z</time>
+        <name>Elk City Airport</name>
+        <cmt>http://www.airnav.com/airport/S90</cmt>
+        <desc>CTAF: 	122.9
+            Runway 14/35
+            Dimensions: 	2600 x 150 ft. / 792 x 46 m
+            Surface: 	turf, in poor condition
+            Operational restrictions: 	IS A CURVED RY.
+            Gradient: 	2.0%
+            Traffic pattern: 	left</desc>
+        <sym>S90</sym>
+        <type>airport</type>
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>100</gpxx:Proximity>
+                <gpxx:Categories>
+                    <gpxx:Category>airport</gpxx:Category>
+                </gpxx:Categories>
+                <gpxx:Address>
+                    <gpxx:StreetAddress>Gen Deivery</gpxx:StreetAddress>
+                    <gpxx:City>Elk City</gpxx:City>
+                    <gpxx:State>ID</gpxx:State>
+                    <gpxx:Country>USA</gpxx:Country>
+                    <gpxx:PostalCode>83525</gpxx:PostalCode>
+                </gpxx:Address>
+                <gpxx:PhoneNumber Category="Phone">208-842-2311</gpxx:PhoneNumber>
+                <gpxx:PhoneNumber Category="Phone2">208-842-2494</gpxx:PhoneNumber>
+                <gpxx:PhoneNumber Category="Email">bogus@elkcity.gov</gpxx:PhoneNumber>
+                <gpxx:PhoneNumber Category="URL">http://www.airnav.com/airport/S90</gpxx:PhoneNumber>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+</gpx>

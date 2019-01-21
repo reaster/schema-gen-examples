@@ -7,8 +7,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
 public class Wpt 
 {
@@ -20,12 +18,12 @@ public class Wpt
     @DecimalMin("-180.0")
     @DecimalMax("180.0")
     private double lon;
-    private Double ele;
+    private double ele;
     private java.time.LocalDateTime time;
     @DecimalMin("0.0")
     @DecimalMax("360.0")
-    private Double magvar;
-    private Double geoidheight;
+    private double magvar;
+    private double geoidheight;
     private String name;
     private String cmt;
     private String desc;
@@ -38,15 +36,16 @@ public class Wpt
     private String type;
     @Valid
     private FixTypeEnum fix;
-    private Integer sat;
-    private Double hdop;
-    private Double vdop;
-    private Double pdop;
-    private Double ageofdgpsdata;
+    private int sat;
+    private double hdop;
+    private double vdop;
+    private double pdop;
+    private double ageofdgpsdata;
     @Min(0)
     @Max(1023)
-    private Integer dgpsid;
-    private java.util.Map<String,String> extensions = new java.util.HashMap<>();
+    private int dgpsid;
+    @Valid
+    private Extensions extensions;
 
     @Override
     public String toString() {
@@ -84,10 +83,10 @@ public class Wpt
         Wpt other = (Wpt)o;
         if (Double.compare(other.lat, lat) != 0) return false;
         if (Double.compare(other.lon, lon) != 0) return false;
-        if (ele != null ? !ele.equals(other.ele) : other.ele != null) return false;
+        if (Double.compare(other.ele, ele) != 0) return false;
         if (time != null ? !time.equals(other.time) : other.time != null) return false;
-        if (magvar != null ? !magvar.equals(other.magvar) : other.magvar != null) return false;
-        if (geoidheight != null ? !geoidheight.equals(other.geoidheight) : other.geoidheight != null) return false;
+        if (Double.compare(other.magvar, magvar) != 0) return false;
+        if (Double.compare(other.geoidheight, geoidheight) != 0) return false;
         if (name != null ? !name.equals(other.name) : other.name != null) return false;
         if (cmt != null ? !cmt.equals(other.cmt) : other.cmt != null) return false;
         if (desc != null ? !desc.equals(other.desc) : other.desc != null) return false;
@@ -96,12 +95,12 @@ public class Wpt
         if (sym != null ? !sym.equals(other.sym) : other.sym != null) return false;
         if (type != null ? !type.equals(other.type) : other.type != null) return false;
         if (fix != null ? !fix.equals(other.fix) : other.fix != null) return false;
-        if (sat != null ? !sat.equals(other.sat) : other.sat != null) return false;
-        if (hdop != null ? !hdop.equals(other.hdop) : other.hdop != null) return false;
-        if (vdop != null ? !vdop.equals(other.vdop) : other.vdop != null) return false;
-        if (pdop != null ? !pdop.equals(other.pdop) : other.pdop != null) return false;
-        if (ageofdgpsdata != null ? !ageofdgpsdata.equals(other.ageofdgpsdata) : other.ageofdgpsdata != null) return false;
-        if (dgpsid != null ? !dgpsid.equals(other.dgpsid) : other.dgpsid != null) return false;
+        if (sat != other.sat) return false;
+        if (Double.compare(other.hdop, hdop) != 0) return false;
+        if (Double.compare(other.vdop, vdop) != 0) return false;
+        if (Double.compare(other.pdop, pdop) != 0) return false;
+        if (Double.compare(other.ageofdgpsdata, ageofdgpsdata) != 0) return false;
+        if (dgpsid != other.dgpsid) return false;
         if (extensions != null ? !extensions.equals(other.extensions) : other.extensions != null) return false;
         return true;
     }
@@ -112,10 +111,13 @@ public class Wpt
         result = 31 * result + (int) (latTemp ^ (latTemp >>> 32));
         final long lonTemp = Double.doubleToLongBits(lon);
         result = 31 * result + (int) (lonTemp ^ (lonTemp >>> 32));
-        result = 31 * result + (ele != null ? ele.hashCode() : 0);
+        final long eleTemp = Double.doubleToLongBits(ele);
+        result = 31 * result + (int) (eleTemp ^ (eleTemp >>> 32));
         result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (magvar != null ? magvar.hashCode() : 0);
-        result = 31 * result + (geoidheight != null ? geoidheight.hashCode() : 0);
+        final long magvarTemp = Double.doubleToLongBits(magvar);
+        result = 31 * result + (int) (magvarTemp ^ (magvarTemp >>> 32));
+        final long geoidheightTemp = Double.doubleToLongBits(geoidheight);
+        result = 31 * result + (int) (geoidheightTemp ^ (geoidheightTemp >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (cmt != null ? cmt.hashCode() : 0);
         result = 31 * result + (desc != null ? desc.hashCode() : 0);
@@ -124,12 +126,16 @@ public class Wpt
         result = 31 * result + (sym != null ? sym.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (fix != null ? fix.hashCode() : 0);
-        result = 31 * result + (sat != null ? sat.hashCode() : 0);
-        result = 31 * result + (hdop != null ? hdop.hashCode() : 0);
-        result = 31 * result + (vdop != null ? vdop.hashCode() : 0);
-        result = 31 * result + (pdop != null ? pdop.hashCode() : 0);
-        result = 31 * result + (ageofdgpsdata != null ? ageofdgpsdata.hashCode() : 0);
-        result = 31 * result + (dgpsid != null ? dgpsid.hashCode() : 0);
+        result = 31 * result + sat;
+        final long hdopTemp = Double.doubleToLongBits(hdop);
+        result = 31 * result + (int) (hdopTemp ^ (hdopTemp >>> 32));
+        final long vdopTemp = Double.doubleToLongBits(vdop);
+        result = 31 * result + (int) (vdopTemp ^ (vdopTemp >>> 32));
+        final long pdopTemp = Double.doubleToLongBits(pdop);
+        result = 31 * result + (int) (pdopTemp ^ (pdopTemp >>> 32));
+        final long ageofdgpsdataTemp = Double.doubleToLongBits(ageofdgpsdata);
+        result = 31 * result + (int) (ageofdgpsdataTemp ^ (ageofdgpsdataTemp >>> 32));
+        result = 31 * result + dgpsid;
         result = 31 * result + (extensions != null ? extensions.hashCode() : 0);
         return result;
     }
@@ -145,10 +151,10 @@ public class Wpt
     public void setLon(double lon) {
         this.lon = lon;
     }
-    public Double getEle() {
+    public double getEle() {
         return ele;
     }
-    public void setEle(Double ele) {
+    public void setEle(double ele) {
         this.ele = ele;
     }
     public java.time.LocalDateTime getTime() {
@@ -157,16 +163,16 @@ public class Wpt
     public void setTime(java.time.LocalDateTime time) {
         this.time = time;
     }
-    public Double getMagvar() {
+    public double getMagvar() {
         return magvar;
     }
-    public void setMagvar(Double magvar) {
+    public void setMagvar(double magvar) {
         this.magvar = magvar;
     }
-    public Double getGeoidheight() {
+    public double getGeoidheight() {
         return geoidheight;
     }
-    public void setGeoidheight(Double geoidheight) {
+    public void setGeoidheight(double geoidheight) {
         this.geoidheight = geoidheight;
     }
     public String getName() {
@@ -222,51 +228,46 @@ public class Wpt
     public void setFix(FixTypeEnum fix) {
         this.fix = fix;
     }
-    public Integer getSat() {
+    public int getSat() {
         return sat;
     }
-    public void setSat(Integer sat) {
+    public void setSat(int sat) {
         this.sat = sat;
     }
-    public Double getHdop() {
+    public double getHdop() {
         return hdop;
     }
-    public void setHdop(Double hdop) {
+    public void setHdop(double hdop) {
         this.hdop = hdop;
     }
-    public Double getVdop() {
+    public double getVdop() {
         return vdop;
     }
-    public void setVdop(Double vdop) {
+    public void setVdop(double vdop) {
         this.vdop = vdop;
     }
-    public Double getPdop() {
+    public double getPdop() {
         return pdop;
     }
-    public void setPdop(Double pdop) {
+    public void setPdop(double pdop) {
         this.pdop = pdop;
     }
-    public Double getAgeofdgpsdata() {
+    public double getAgeofdgpsdata() {
         return ageofdgpsdata;
     }
-    public void setAgeofdgpsdata(Double ageofdgpsdata) {
+    public void setAgeofdgpsdata(double ageofdgpsdata) {
         this.ageofdgpsdata = ageofdgpsdata;
     }
-    public Integer getDgpsid() {
+    public int getDgpsid() {
         return dgpsid;
     }
-    public void setDgpsid(Integer dgpsid) {
+    public void setDgpsid(int dgpsid) {
         this.dgpsid = dgpsid;
     }
-    @JsonAnyGetter
-    public java.util.Map<String,String> getExtensions() {
+    public Extensions getExtensions() {
         return extensions;
     }
-    public void setExtensions(java.util.Map<String,String> extensions) {
+    public void setExtensions(Extensions extensions) {
         this.extensions = extensions;
-    }
-    @JsonAnySetter
-    public void putExtensions(String key, String value) {
-        this.extensions.put(key, value);
     }
 }
