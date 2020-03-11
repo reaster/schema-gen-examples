@@ -1,17 +1,10 @@
+plugins {
+    id 'java-library'
+    id 'groovy'
+}
+
 group 'com.javagen'
 version '1.0.0-SNAPSHOT'
-
-//buildscript {
-//    repositories {
-//        maven { url "https://plugins.gradle.org/m2/"  }
-//    }
-//    dependencies {
-//        classpath "gradle.plugin.com.javagen:schema-gen:0.9.0"
-//    }
-//}
-
-apply plugin: 'groovy'
-apply plugin: 'com.javagen.schema-gen'
 
 //schemaGen {
 //    java {
@@ -33,11 +26,11 @@ repositories {
 }
 
 dependencies {
-    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.0'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0'
-    compile 'org.hibernate.validator:hibernate-validator:6.0.2.Final'
-    compile 'org.glassfish:javax.el:3.0.1-b08'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.3'
+    implementation 'org.hibernate.validator:hibernate-validator:6.1.2.Final'
+    implementation 'org.glassfish:javax.el:3.0.1-b08'
+    testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
 }
 
 //class JavaGenPlugin implements Plugin<Project>

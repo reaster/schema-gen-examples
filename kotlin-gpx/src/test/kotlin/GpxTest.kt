@@ -1,6 +1,7 @@
 package com.topografix.gpx
 
 import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.databind.Module
 import kotlin.test.assertEquals
 import org.junit.Test as test
 import com.fasterxml.jackson.module.kotlin.*
@@ -84,7 +85,7 @@ class GpxTest()
         xmlMapper.registerModule(ParameterNamesModule())
         xmlMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
         xmlMapper.configure(SerializationFeature.INDENT_OUTPUT, true)
-        xmlMapper.registerModule(JavaTimeModule())
+        xmlMapper.registerModule(JavaTimeModule() as Module?)
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
         val file = File("src/test/resources/BlackRockCity.gpx")
         val inputStream:InputStream = FileInputStream(file)
