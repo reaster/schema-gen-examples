@@ -7,10 +7,10 @@
 //    }
 //}
 
-apply plugin: 'com.javagen.schema-gen'
+//apply plugin: 'com.javagen.schema-gen'
 
-schemaGen {
-    swift {
-        schemaURL = new URL('file:src/main/resources/gpx.xsd')
-    }
-}
+//schemaGen {
+//    swift {
+//        schemaURL = new URL('file:src/main/resources/gpx.xsd')
+//    }
+//}

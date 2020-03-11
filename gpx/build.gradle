@@ -11,7 +11,7 @@ This project demonstrates how to run multiple language code generators at once.
 //}
 
 apply plugin: 'groovy'
-apply plugin: "com.javagen.schema-gen"
+//apply plugin: "com.javagen.schema-gen"
 
 //schemaGen {
 //    swift{
